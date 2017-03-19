@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Booking";
+}
+<div class="box" style="text-align:center">
+    <h2>CHECK ROOM AVAILABALITY</h2>
+    <div class="row" style="padding-top:40px;">
+        <div class="col-sm-6">
+            <label> Check In:</label><br>
+            <input type="date" name="checkIn" id="checkIn">
+        </div>
+        <div class="col-sm-6">
+            <label> Check Out:</label><br>
+            <input type="date" name="checkOut" id="checkOut" min="2000-01-02">
+        </div>
+    </div>
+    
+    <div class="row" style="padding-top:40px;">
+        <div class="col-sm-4">
+            Rooms:
+            <select name="Rooms" id="Rooms"></select>
+        </div>
+        <div class="col-sm-4">
+            Adults:
+            <select name="Rooms" id="Adults"></select>
+        </div>
+        <div class="col-sm-4">
+            Children:
+            <select name="Rooms" id="Children"></select>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    /*CHECK IN CHECK OUT DATES*/
+    var d = new Date();
+    var mnths = +d.getMonth() + 1;
+    var days = d.getDate() + 1;
+    var yrs = d.getFullYear() + 1;
+    var chkInDates = d.getFullYear() + "-" + mnths + "-" + d.getDate();
+    var chkOutDates = d.getFullYear() + "-" + mnths + "-" + days;
+    document.getElementById("checkIn").min = chkInDates;
+    document.getElementById("checkOut").min = chkOutDates;
+    document.getElementById("checkIn").max = yrs + "-" + mnths + "-" + days;
+    document.getElementById("checkOut").max = yrs + "-" + mnths + "-" + days;
+
+    /* FOR number of ROOMS ADULTS AND CHILDREN*/
+    var selectArr=[];
+    selectArr.push(document.getElementById('Adults'));
+    selectArr.push(document.getElementById('Rooms'));
+    var children = document.getElementById('Children');
+    for (m = 0; m < 2; m++) {
+        for (var i = 1; i < 10; i++) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = i
+            selectArr[m].appendChild(option);
+        }
+        for (var i = 0; i < 5; i++) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = i
+            children.appendChild(option);
+        }
+    }
+</script>
